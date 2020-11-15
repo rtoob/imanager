@@ -19,6 +19,8 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 		<!-- My CSS style -->
     <link rel="stylesheet" type="text/css" href="css/estilo.css">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
     </head>
     <body>
 
@@ -27,15 +29,16 @@
 					<form action="tabla.php" class="formulario" id="formulario" name="formulario" method="POST">
 						<div class="contenedor-inputs">
 							<input type="text" name="name" placeholder="שם מלא">
-								<div class="roles">
+								
+							<div class="roles">
 									<label> תפקיד </label>
 									<select name="roles">
 											<option value="" disabled selected> לבחור תפקיד</option>
-											<option value="1">Manager</option>
-											<option value="2">Sales</option>
-											<option value="3">Customer Service</option>
-											<option value="4">development</option>
-											<option value="5">IT</option>
+											<option value="Manager">Manager</option>
+											<option value="Sales">Sales</option>
+											<option value="Customer Service">Customer Service</option>
+											<option value="development">development</option>
+											<option value="IT">IT</option>
 									</select>
 						</div>
 						
@@ -48,15 +51,14 @@
 				</div>
 
 
-				<div class="input-field col s12">
-   			 <select name="hobbies" multiple="multiple">
+				<div name="hobbies" class="input-field col s12">
+				<select name="hobbies[]" id="hobbies" multiple>
 					<option value="" disabled selected>לבחור תחביב</option>
-
-	 				 <option value="1">Computer Programming</option>
-	 					 <option value="2">Photography</option>
-	 						 <option value="3">Cooking</option>
-	 							 <option value="4">Dance</option>
-	 								 <option value="5">Learning</option>
+	 				 <option value="Computer Programming">Computer Programming</option>
+	 					 <option value="Photography">Photography</option>
+	 						 <option value="Cooking">Cooking</option>
+	 							 <option value="Dance">Dance</option>
+	 								 <option value="Learning">Learning</option>
    				 </select>
 		
   </div>
@@ -69,7 +71,7 @@
 			<br>
 			<br>
 		
-		<input type="submit" class="btn" name="registrarse" value="שלח" style="background-color: #90a4ae;">
+		<input type="submit" class="btn"  name="registrarse" value="שלח" style="background-color: #90a4ae;">
 
 			<br>
 			<br>
@@ -85,15 +87,24 @@
 	
 	<!-- Compiled and minified JavaScript MaterializeCSS-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-	
+	<script src="js/hobbies.js"></script>
 	<script>
 	 $(document).ready(function(){
     $('select').formSelect();
   });
 	</script>
+<script type="text/javascript">
+        $(document).ready(function() {
+            $('.hobbies').select2();
+        });
+    </script>
+
+
 
 </body>
 </html>
+
+
 
 <?php
 
@@ -115,7 +126,9 @@
 
 		if(!$ejecutarInsertar){
 			echo"Error En la linea de sql";
+
 		}
+
 
 	}
 ?>
